@@ -16,7 +16,7 @@ def drawBoard(board):
 def inputPlayerChoice():
     letter = ''
 
-    while not letter == 'X' or not letter == 'O':
+    while not (letter == 'X' or letter == 'O'):
         print('Please choose letter X or O?')
         letter = input().upper()
 
@@ -92,7 +92,7 @@ def playersMove(board):
 
     move = ' '
 
-    while move not in [1,2,3,4,5,6,7,8,9] or not isEmpty(board, int(move)):
+    while move not in ['1','2','3','4','5','6','7','8','9'] or not isEmpty(board, int(move)):
 
         print('Pick a number for your next move? (1-9)')
 
@@ -191,3 +191,84 @@ def isFull(board):
     return True
 
 print('Attendion! You are now starting Tic Tac Toe!')
+
+while True:
+    
+    # Board reset 
+
+    theBoard = [' '] * 10
+
+    playerLetter, computerLetter = inputPlayerChoice()
+
+    turn = whoFirst()
+
+    print('The ' + turn + ' starts first.')
+
+    gameIsOn = True
+
+    while gameIsOn:
+
+        if turn == 'player':
+
+            # Player’s turn.
+
+            drawBoard(theBoard)
+
+            move = playersMove(theBoard)
+
+            makeTheMove(theBoard, playerLetter, move)
+
+            if winner(theBoard, playerLetter):
+
+                drawBoard(theBoard)
+
+                print('Congrats! Winner!')
+
+                gameIsOn = False
+
+            else:
+
+                if isFull(theBoard):
+
+                    drawBoard(theBoard)
+
+                    print('You are not more clever than Algoritm!')
+
+                    break
+
+                else:
+
+                    turn = 'computer'
+
+        else:
+
+            # Computer’s turn.
+
+            move = computersMove(theBoard, computerLetter)
+
+            makeTheMove(theBoard, computerLetter, move)
+
+            if winner(theBoard, computerLetter):
+
+                drawBoard(theBoard)
+
+                print('Shame on you, looser!')
+
+                gameIsOn = False
+
+            else:
+
+                if isFull(theBoard):
+
+                    drawBoard(theBoard)
+
+                    print('You are just as stupid as AI!')
+
+                    break
+
+                else:
+
+                    turn = 'player'
+    if not playAgain():
+
+        break
