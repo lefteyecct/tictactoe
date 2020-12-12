@@ -27,3 +27,11 @@ def inputPlayerChoice():
     else:
         return ['O', 'X']
 
+def whoFirst():
+    
+    # Randomly choose who goes first.
+
+    if random.randint(0, 1) == 0:
+        return 'computer'
+    else:
+        return 'player'
