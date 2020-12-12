@@ -35,3 +35,15 @@ def whoFirst():
         return 'computer'
     else:
         return 'player'
+
+def playAgain():
+    
+    # yes returns Ture, otherwise False.
+
+    print('Another round? (yes or no)')
+
+    return input().lower().startswith('y')
+
+def makeTheMove(board, letter, move):
+
+    board[move] = letter
