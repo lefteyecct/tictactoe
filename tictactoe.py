@@ -129,3 +129,65 @@ def computersMove(board, computerLetter):
     else:
 
         playerLetter = 'X'
+
+# Algorithm for Tic Tac Toe AI:
+
+    # Check if can win in the next move
+
+    for i in range(1, 10):
+
+        copy = CopyBoard(board)
+
+        if isEmpty(copy, i):
+
+            makeTheMove(copy, computerLetter, i)
+
+            if winner(copy, computerLetter):
+
+                return i
+
+    # Check if the player could win then block the player.
+
+    for i in range(1, 10):
+
+        copy = CopyBoard(board)
+
+        if isEmpty(copy, i):
+
+            makeTheMove(copy, playerLetter, i)
+
+            if winner(copy, playerLetter):
+
+                return i
+
+    # Take one of the corners if it's empty.
+
+    move = pickMoveFromList(board, [1, 3, 7, 9])
+
+    if move != None:
+
+        return move
+
+    # Take the center if it is empty.
+
+    if isEmpty(board, 5):
+
+        return 5
+
+    # To one of the middle sides.
+
+    return pickMoveFromList(board, [2, 4, 6, 8])
+
+def isFull(board):
+
+    # True if no more space. 
+
+    for i in range(1, 10):
+
+        if isEmpty(board, i):
+
+            return False
+
+    return True
+
+print('Attendion! You are now starting Tic Tac Toe!')
