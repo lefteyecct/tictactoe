@@ -67,3 +67,65 @@ def winner(board, letter):
     (board[7] == letter and board[5] == letter and board[3] == letter) or # diagonal
 
     (board[9] == letter and board[5] == letter and board[1] == letter)) # diagonal
+
+def CopyBoard(board):
+    
+    # Copy the board list.
+
+    dupeBoard = []
+
+    for i in board:
+
+        dupeBoard.append(i)
+
+    return dupeBoard
+
+def isEmpty(board, move):
+
+    # Check if the board has empty space.
+
+    return board[move] == ' '
+
+def playersMove(board):
+
+    # Get the play's input.
+
+    move = ' '
+
+    while move not in [1,2,3,4,5,6,7,8,9] or not isEmpty(board, int(move)):
+
+        print('Pick a number for your next move? (1-9)')
+
+        move = input()
+
+    return int(move)
+
+def pickMoveFromList(board, movesList):
+
+    # Returns a valid move from the previous list and returns None if there is no valid move.
+
+    possibleMoves = []
+
+    for i in movesList:
+
+        if isEmpty(board, i):
+
+            possibleMoves.append(i)
+
+    if len(possibleMoves) != 0:
+
+        return random.choice(possibleMoves)
+    else:
+        return None
+
+def computersMove(board, computerLetter):
+
+    # Computer's next move in the board and return that value.
+
+    if computerLetter == 'X':
+
+        playerLetter = 'O'
+
+    else:
+
+        playerLetter = 'X'
