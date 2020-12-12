@@ -47,3 +47,23 @@ def playAgain():
 def makeTheMove(board, letter, move):
 
     board[move] = letter
+
+def winner(board, letter):
+    
+    # The function is to verify if the player wins, then returns True .
+
+    return ((board[7] == letter and board[8] == letter and board[9] == letter) or # across the top
+
+    (board[4] == letter and board[5] == letter and board[6] == letter) or # across the middle
+
+    (board[1] == letter and board[2] == letter and board[3] == letter) or # across the bottom
+
+    (board[7] == letter and board[4] == letter and board[1] == letter) or # down the left side
+
+    (board[8] == letter and board[5] == letter and board[2] == letter) or # down the middle
+
+    (board[9] == letter and board[6] == letter and board[3] == letter) or # down the right side
+
+    (board[7] == letter and board[5] == letter and board[3] == letter) or # diagonal
+
+    (board[9] == letter and board[5] == letter and board[1] == letter)) # diagonal
